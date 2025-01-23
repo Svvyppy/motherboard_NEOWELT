@@ -1,0 +1,79 @@
+Added Component: Designator=DD2(STM32F103C8T6_board)
+Add component (AddParameter): Name = "Part Number"; Value = "STM32F103C8T6_board"; VariantName = "[No Variations]"
+Added Component: Designator=XP1(1-1734577-3-rj45-8p8c)
+Add component (AddParameter): Name = "Part Number"; Value = "1-1734577-3-rj45-8p8c"; VariantName = "[No Variations]"
+Added Component: Designator=XP2(DIN41612_32_2row_right_angle_father)
+Add component (AddParameter): Name = "Part Number"; Value = "DIN41612_32_2row_right_angle_father"; VariantName = "[No Variations]"
+Add Pin To Net: Unknown Pin: Pin DD1-2
+Add Pin To Net: Unknown Pin: Pin DD1-3
+Add Pin To Net: Unknown Pin: Pin DD1-4
+Add Pin To Net: Unknown Pin: Pin DD1-5
+Add Pin To Net: Unknown Pin: Pin DD1-6
+Add Pin To Net: Unknown Pin: Pin DD1-7
+Add Pin To Net: Unknown Pin: Pin DD1-8
+Add Pin To Net: Unknown Pin: Pin DD1-9
+Add Pin To Net: Unknown Pin: Pin DD1-10
+Add Pin To Net: Unknown Pin: Pin DD1-14
+Add Pin To Net: Unknown Pin: Pin DD1-20
+Add Pin To Net: Unknown Pin: Pin DD1-21
+Add Pin To Net: Unknown Pin: Pin DD1-24
+Add Pin To Net: Unknown Pin: Pin DD1-25
+Add Pin To Net: Unknown Pin: Pin DD1-27
+Add Pin To Net: Unknown Pin: Pin DD1-28
+Add Pin To Net: Unknown Pin: Pin DD1-29
+Add Pin To Net: Unknown Pin: Pin DD1-30
+Add Pin To Net: Unknown Pin: Pin DD1-32
+Add Pin To Net: Unknown Pin: Pin DD1-33
+Add Pin To Net: Unknown Pin: Pin DD1-34
+Add Pin To Net: Unknown Pin: Pin DD1-39
+Added Pin To Net: NetName=STM_TX Pin=DD2-14
+Added Pin To Net: NetName=STM_RX Pin=DD2-15
+Added Pin To Net: NetName=I2C2_SCL Pin=DD2-16
+Added Pin To Net: NetName=I2C2_SDA Pin=DD2-17
+Added Pin To Net: NetName=GND Pin=DD2-19
+Added Pin To Net: NetName=3.3V Pin=DD2-20
+Added Pin To Net: NetName=3.3V Pin=DD2-38
+Added Pin To Net: NetName=GND Pin=DD2-39
+Added Pin To Net: NetName=GND Pin=DD2-40
+Added Pin To Net: NetName=ethernet 1_P Pin=XP1-1
+Added Pin To Net: NetName=ethernet 1_N Pin=XP1-2
+Added Pin To Net: NetName=ethernet 2_P Pin=XP1-3
+Added Pin To Net: NetName=ethernet 3_P Pin=XP1-4
+Added Pin To Net: NetName=ethernet 3_N Pin=XP1-5
+Added Pin To Net: NetName=ethernet 2_N Pin=XP1-6
+Added Pin To Net: NetName=ethernet 4_P Pin=XP1-7
+Added Pin To Net: NetName=ethernet 4_N Pin=XP1-8
+Added Pin To Net: NetName=ethernet 1_P Pin=XP2-A1
+Added Pin To Net: NetName=ethernet 1_N Pin=XP2-A2
+Added Pin To Net: NetName=ethernet 2_P Pin=XP2-A3
+Added Pin To Net: NetName=ethernet 3_P Pin=XP2-A4
+Added Pin To Net: NetName=ethernet 3_N Pin=XP2-A5
+Added Pin To Net: NetName=ethernet 2_N Pin=XP2-A6
+Added Pin To Net: NetName=ethernet 4_P Pin=XP2-A7
+Added Pin To Net: NetName=ethernet 4_N Pin=XP2-A8
+Added Pin To Net: NetName=UART0_RX Pin=XP2-A9
+Added Pin To Net: NetName=UART0_TX Pin=XP2-A10
+Added Pin To Net: NetName=UART2_RX Pin=XP2-A11
+Added Pin To Net: NetName=UART2_TX Pin=XP2-A12
+Added Pin To Net: NetName=I2C2_SCL Pin=XP2-A13
+Added Pin To Net: NetName=I2C2_SDA Pin=XP2-A15
+Added Pin To Net: NetName=I2C1_SCL Pin=XP2-B1
+Added Pin To Net: NetName=I2C1_SDA Pin=XP2-B2
+Added Pin To Net: NetName=UART3_RX Pin=XP2-B3
+Added Pin To Net: NetName=UART3_TX Pin=XP2-B4
+Added Pin To Net: NetName=PWM1 Pin=XP2-B5
+Added Pin To Net: NetName=PWM2 Pin=XP2-B6
+Added Pin To Net: NetName=PWM3 Pin=XP2-B7
+Added Pin To Net: NetName=PWM4 Pin=XP2-B8
+Added Pin To Net: NetName=PWM5 Pin=XP2-B9
+Added Pin To Net: NetName=PWM6 Pin=XP2-B10
+Added Pin To Net: NetName=PWM7 Pin=XP2-B11
+Added Pin To Net: NetName=PWM8 Pin=XP2-B12
+Added Pin To Net: NetName=PWM9 Pin=XP2-B13
+Added Pin To Net: NetName=PWM10 Pin=XP2-B14
+Added Pin To Net: NetName=SERVO1 Pin=XP2-B15
+Added Pin To Net: NetName=SERVO2 Pin=XP2-B16
+Add Class Member: Failed to add class member : Component DD1 RPI 4B
+Added Member To Class: ClassName=VMA control Member=Component DD2 STM32F103C8T6_board
+Added Member To Class: ClassName=Connectors Member=Component XP1 1734577-3
+Added Member To Class: ClassName=Connectors Member=Component XP2 DIN41612_32_2row_right_angle_father
