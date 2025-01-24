@@ -254,23 +254,6 @@ GenerateClassCluster=0
 DocumentUniqueId=APSMUSRV
 
 [Document13]
-DocumentPath=..\..\..\Hydrolib\Schematic\RPI.SchLib
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=0
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=JKJPHABN
-
-[Document14]
 DocumentPath=PCB1.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -287,7 +270,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=WGHHPJEY
 
-[Document15]
+[Document14]
 DocumentPath=Main.Harness
 AnnotationEnabled=1
 AnnotateStartValue=1
