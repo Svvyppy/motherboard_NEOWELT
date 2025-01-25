@@ -254,7 +254,7 @@ GenerateClassCluster=0
 DocumentUniqueId=APSMUSRV
 
 [Document13]
-DocumentPath=PCB1.PcbDoc
+DocumentPath=Motherboard_Neowelt.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
