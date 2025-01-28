@@ -1,0 +1,692 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD24\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">28.01.2025</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">13:37:51</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc" class="file"><acronym title="C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc">C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">108</td></tr>
+</table>
+</td>
+</table><a name="IDBZEKXOP4SYROOUYMHPVZVSNJXCNZYWUKWAJUAEJI1ZLHISXW4BOM"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4BFUXCBOX0DBJXWDMKHWG10G3HO13JDRNHAN4SJSSRB1XMSSIHQL">Clearance Constraint (Gap=0.125mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDSEDIJJSOS43IJDZLRRBDJZHIFBWZDNG3IATWKFHLR3DAMLC44QNH">Clearance Constraint (Gap=0.25mm) (InNetClass('V')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAIZEFGDABVJLF1TE33IJAMBDMHIIPXPJ1CNO5NDTZBIHJNKR4PPK">Clearance Constraint (Gap=0.2mm) (InNet('NetU1_12')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRGLUH2WSMEFVDNDHUDPUZVRT1DBYO21ZJFBZV0KNFX2MVIGRKJYH">Clearance Constraint (Gap=0.254mm) (InNamedPolygon('GND_L01_P000')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJEKRGG3ZBOS4MSJPIBHVEGAM4IQG34UCC3ZEESHSIRTOJTJOLUSB">Clearance Constraint (Gap=0.2mm) (InNet('NetC10_2')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID25NZKRBLLKGEBW4H0OU5RMHSOG3HYEPX0YCPSFCRAOBHUOTDZPSL">Clearance Constraint (Gap=0.2mm) (InNet('NetC2_2')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYX2XQFTPITIPDICYKOWFZSUHBJ0DMZG4SYCVLNBTJT3O3HJQ0DIF">Clearance Constraint (Gap=0.2mm) (InNet('NetC6_2')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDT3204TQUYJITNW431X3SZ1ZLYNVK2JRSZLORG5WVZKE2DTA14B">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDHYU2XOK2LKUPGX0A1ZPIQKURVB1XHUBAS2QLR3CLXWH2HL3RM1DL">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">5</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1YVSRTEX5WINNFSFCI5EFDU1WCBHMJWN5SD1M4FYOCD4AHBR3CTO">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUNITQFW42M2XJTHQUO0WQHCFZLK41HWWUNCUMJW2PGM3OUP5J3">Width Constraint (Min=0.2mm) (Max=2mm) (Preferred=0.25mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNOEFLHLV3GTVDK5KDGWAUMXKIBV5QAAFTCCNK4MEUUYTZ5FXB0K">Width Constraint (Min=0.3mm) (Max=3mm) (Preferred=1mm) (InNetClass('V'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYSNWYNFBLDZYJPIRN4WX4SE3TJJZGCJYJJECMLI3I2WVFVAHJKAE">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIQJVZEAQ3GO4CGMUPP2FJULWDMKOMDULKYCP3UFAOWECLHWJQWB">Hole Size Constraint (Min=0.25mm) (Max=5.6mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDKCJLFQYA4IMDJGKOSZ1CRWYJGB4KGWKXE243HHIHWA5DITL41K2F">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDAWK55XZ5XGZNBKSGFKRYONX4ILUNUKBXMXZUXPJ1044ZK2U4USTC">Minimum Solder Mask Sliver (Gap=0.075mm) (All),(All)</a></td>
+<td class="column2">22</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4TILFDGJ4IF2FGTOTZB3GEN3KIDNXBM0JF3AOFD4IQV2D0JUD1FJ">Silk To Solder Mask (Clearance=0.125mm) (IsPad),(All)</a></td>
+<td class="column2">80</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1JXGZSCA4QA1JD1HLQ2ONUFMIMVLKEUYUCMEGXETQGLK1RBUP0AN">Silk to Silk (Clearance=0.15mm) (All),(All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRSQTVT1HB443NPSZO2FVO4TL1J3SHRMD5LTW3TPGU1MEO2XPHP4D">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFVDRD5OSQBSLD5E43HLFCNOLMESFBRWZMEWFTPLR2IOYIQKUE25H">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">108</td>
+</tr>
+</table><br><a name="IDHYU2XOK2LKUPGX0A1ZPIQKURVB1XHUBAS2QLR3CLXWH2HL3RM1DL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1054.071mil|Location2.X=1161.48mil|Location1.Y=1342.458mil|Location2.Y=1481.361mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1054.071mil|Location2.X=1161.48mil|Location1.Y=1342.458mil|Location2.Y=1481.361mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad VD1-1(3mm,10.25mm) on Top Layer And Pad C3-1(3.95mm,12mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1346.395mil|Location2.X=1427.228mil|Location1.Y=1786.354mil|Location2.Y=1909.315mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1346.395mil|Location2.X=1427.228mil|Location1.Y=1786.354mil|Location2.Y=1909.315mil|Absolute=True">Un-Routed Net Constraint: Net V_OUT Between Pad VT3-8(10.025mm,23.095mm) on Top Layer And Pad C4-2(10.7mm,21mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1275.528mil|Location2.X=1372.111mil|Location1.Y=1226.709mil|Location2.Y=1343.568mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1275.528mil|Location2.X=1372.111mil|Location1.Y=1226.709mil|Location2.Y=1343.568mil|Absolute=True">Un-Routed Net Constraint: Net V_OUT Between Pad C5-2(7.95mm,8.5mm) on Bottom Layer And Pad VT2-5(9.025mm,6.56mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1621mil|Location2.X=1735.298mil|Location1.Y=1510.174mil|Location2.Y=1614.63mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1621mil|Location2.X=1735.298mil|Location1.Y=1510.174mil|Location2.Y=1614.63mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad R7-1(16.75mm,14.45mm) on Bottom Layer And Pad U1-21(17.75mm,14.685mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1275.984mil|Location2.X=1625.591mil|Location1.Y=1297.638mil|Location2.Y=1546.85mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1275.984mil|Location2.X=1625.591mil|Location1.Y=1297.638mil|Location2.Y=1546.85mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Track (9mm,10.5mm)(9.95mm,10.5mm) on Top Layer And Via (13.75mm,11.75mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDAWK55XZ5XGZNBKSGFKRYONX4ILUNUKBXMXZUXPJ1044ZK2U4USTC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.075mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1380.773mil|Location2.X=1384.976mil|Location1.Y=1316.796mil|Location2.Y=1320.999mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1380.773mil|Location2.X=1384.976mil|Location1.Y=1316.796mil|Location2.Y=1320.999mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.075mm) Between Pad C5-1(9.55mm,8.5mm) on Bottom Layer And Via (10.5mm,8.5mm) from Top Layer to Bottom Layer [Bottom Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1529.162mil|Location2.X=1533.365mil|Location1.Y=1323.686mil|Location2.Y=1327.889mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1529.162mil|Location2.X=1533.365mil|Location1.Y=1323.686mil|Location2.Y=1327.889mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.009mm &lt; 0.075mm) Between Pad C6-2(14.45mm,8.75mm) on Bottom Layer And Via (13.538mm,8.675mm) from Top Layer to Bottom Layer [Bottom Solder] Mask Sliver [0.009mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1378.312mil|Location2.X=1382.515mil|Location1.Y=2114.04mil|Location2.Y=2118.243mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1378.312mil|Location2.X=1382.515mil|Location1.Y=2114.04mil|Location2.Y=2118.243mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.022mm &lt; 0.075mm) Between Pad C8-2(9.075mm,28.5mm) on Top Layer And Via (10.5mm,28.75mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.022mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1353.706mil|Location2.X=1357.909mil|Location1.Y=1395.536mil|Location2.Y=1399.739mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1353.706mil|Location2.X=1357.909mil|Location1.Y=1395.536mil|Location2.Y=1399.739mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.022mm &lt; 0.075mm) Between Pad R5-1(9.95mm,10.5mm) on Top Layer And Via (9mm,10.5mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.022mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1589.188mil|Location2.X=1593.391mil|Location1.Y=1589.828mil|Location2.Y=1594.03mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1589.188mil|Location2.X=1593.391mil|Location1.Y=1589.828mil|Location2.Y=1594.03mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.027mm &lt; 0.075mm) Between Pad U1-1(15.815mm,15.685mm) on Top Layer And Pad U1-2(15.815mm,15.185mm) on Top Layer [Top Solder] Mask Sliver [0.027mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1710.498mil|Location2.X=1714.7mil|Location1.Y=1468.518mil|Location2.Y=1472.721mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1710.498mil|Location2.X=1714.7mil|Location1.Y=1468.518mil|Location2.Y=1472.721mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.027mm &lt; 0.075mm) Between Pad U1-10(18.75mm,12.75mm) on Top Layer And Pad U1-9(18.25mm,12.75mm) on Top Layer [Top Solder] Mask Sliver [0.027mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1772.751mil|Location2.X=1776.954mil|Location1.Y=1530.773mil|Location2.Y=1534.975mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1772.751mil|Location2.X=1776.954mil|Location1.Y=1530.773mil|Location2.Y=1534.975mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.027mm &lt; 0.075mm) Between Pad U1-11(19.685mm,13.685mm) on Top Layer And Pad U1-12(19.685mm,14.185mm) on Top Layer [Top Solder] Mask Sliver [0.027mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1772.751mil|Location2.X=1776.954mil|Location1.Y=1550.458mil|Location2.Y=1554.66mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1772.751mil|Location2.X=1776.954mil|Location1.Y=1550.458mil|Location2.Y=1554.66mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.027mm &lt; 0.075mm) Between Pad U1-12(19.685mm,14.185mm) on Top Layer And Pad U1-13(19.685mm,14.685mm) on Top Layer [Top Solder] Mask Sliver [0.027mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1772.751mil|Location2.X=1776.954mil|Location1.Y=1570.143mil|Location2.Y=1574.345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1772.751mil|Location2.X=1776.954mil|Location1.Y=1570.143mil|Location2.Y=1574.345mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.027mm &lt; 0.075mm) Between Pad U1-13(19.685mm,14.685mm) on Top Layer And Pad U1-14(19.685mm,15.185mm) on Top Layer [Top Solder] Mask Sliver [0.027mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1772.751mil|Location2.X=1776.954mil|Location1.Y=1589.828mil|Location2.Y=1594.03mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1772.751mil|Location2.X=1776.954mil|Location1.Y=1589.828mil|Location2.Y=1594.03mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.027mm &lt; 0.075mm) Between Pad U1-14(19.685mm,15.185mm) on Top Layer And Pad U1-15(19.685mm,15.685mm) on Top Layer [Top Solder] Mask Sliver [0.027mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1710.498mil|Location2.X=1714.7mil|Location1.Y=1652.081mil|Location2.Y=1656.284mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1710.498mil|Location2.X=1714.7mil|Location1.Y=1652.081mil|Location2.Y=1656.284mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.027mm &lt; 0.075mm) Between Pad U1-16(18.75mm,16.62mm) on Top Layer And Pad U1-17(18.25mm,16.62mm) on Top Layer [Top Solder] Mask Sliver [0.027mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1690.812mil|Location2.X=1695.014mil|Location1.Y=1652.081mil|Location2.Y=1656.284mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1690.812mil|Location2.X=1695.014mil|Location1.Y=1652.081mil|Location2.Y=1656.284mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.027mm &lt; 0.075mm) Between Pad U1-17(18.25mm,16.62mm) on Top Layer And Pad U1-18(17.75mm,16.62mm) on Top Layer [Top Solder] Mask Sliver [0.027mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1671.127mil|Location2.X=1675.329mil|Location1.Y=1652.081mil|Location2.Y=1656.284mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1671.127mil|Location2.X=1675.329mil|Location1.Y=1652.081mil|Location2.Y=1656.284mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.027mm &lt; 0.075mm) Between Pad U1-18(17.75mm,16.62mm) on Top Layer And Pad U1-19(17.25mm,16.62mm) on Top Layer [Top Solder] Mask Sliver [0.027mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1651.442mil|Location2.X=1655.644mil|Location1.Y=1652.081mil|Location2.Y=1656.284mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1651.442mil|Location2.X=1655.644mil|Location1.Y=1652.081mil|Location2.Y=1656.284mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.027mm &lt; 0.075mm) Between Pad U1-19(17.25mm,16.62mm) on Top Layer And Pad U1-20(16.75mm,16.62mm) on Top Layer [Top Solder] Mask Sliver [0.027mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1589.188mil|Location2.X=1593.391mil|Location1.Y=1570.143mil|Location2.Y=1574.345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1589.188mil|Location2.X=1593.391mil|Location1.Y=1570.143mil|Location2.Y=1574.345mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.027mm &lt; 0.075mm) Between Pad U1-2(15.815mm,15.185mm) on Top Layer And Pad U1-3(15.815mm,14.685mm) on Top Layer [Top Solder] Mask Sliver [0.027mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1589.188mil|Location2.X=1593.391mil|Location1.Y=1550.458mil|Location2.Y=1554.66mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1589.188mil|Location2.X=1593.391mil|Location1.Y=1550.458mil|Location2.Y=1554.66mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.027mm &lt; 0.075mm) Between Pad U1-3(15.815mm,14.685mm) on Top Layer And Pad U1-4(15.815mm,14.185mm) on Top Layer [Top Solder] Mask Sliver [0.027mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1589.188mil|Location2.X=1593.391mil|Location1.Y=1530.773mil|Location2.Y=1534.975mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1589.188mil|Location2.X=1593.391mil|Location1.Y=1530.773mil|Location2.Y=1534.975mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.027mm &lt; 0.075mm) Between Pad U1-4(15.815mm,14.185mm) on Top Layer And Pad U1-5(15.815mm,13.685mm) on Top Layer [Top Solder] Mask Sliver [0.027mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1651.442mil|Location2.X=1655.644mil|Location1.Y=1468.518mil|Location2.Y=1472.721mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1651.442mil|Location2.X=1655.644mil|Location1.Y=1468.518mil|Location2.Y=1472.721mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.027mm &lt; 0.075mm) Between Pad U1-6(16.75mm,12.75mm) on Top Layer And Pad U1-7(17.25mm,12.75mm) on Top Layer [Top Solder] Mask Sliver [0.027mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1671.127mil|Location2.X=1675.329mil|Location1.Y=1468.518mil|Location2.Y=1472.721mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1671.127mil|Location2.X=1675.329mil|Location1.Y=1468.518mil|Location2.Y=1472.721mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.027mm &lt; 0.075mm) Between Pad U1-7(17.25mm,12.75mm) on Top Layer And Pad U1-8(17.75mm,12.75mm) on Top Layer [Top Solder] Mask Sliver [0.027mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1690.812mil|Location2.X=1695.014mil|Location1.Y=1468.518mil|Location2.Y=1472.721mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1690.812mil|Location2.X=1695.014mil|Location1.Y=1468.518mil|Location2.Y=1472.721mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.027mm &lt; 0.075mm) Between Pad U1-8(17.75mm,12.75mm) on Top Layer And Pad U1-9(18.25mm,12.75mm) on Top Layer [Top Solder] Mask Sliver [0.027mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1694.513mil|Location2.X=1698.716mil|Location1.Y=1889.148mil|Location2.Y=1893.35mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1694.513mil|Location2.X=1698.716mil|Location1.Y=1889.148mil|Location2.Y=1893.35mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.033mm &lt; 0.075mm) Between Pad VT4-4(17.255mm,23.091mm) on Top Layer And Via (18.459mm,22.99mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.033mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1855.201mil|Location2.X=1859.404mil|Location1.Y=1660.501mil|Location2.Y=1664.704mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1855.201mil|Location2.X=1859.404mil|Location1.Y=1660.501mil|Location2.Y=1664.704mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.012mm &lt; 0.075mm) Between Via (21.825mm,17.16mm) from Top Layer to Bottom Layer And Via (22.575mm,17.31mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.012mm] / [Bottom Solder] Mask Sliver [0.012mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID4TILFDGJ4IF2FGTOTZB3GEN3KIDNXBM0JF3AOFD4IQV2D0JUD1FJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.125mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1697.21mil|Location2.X=1703.381mil|Location1.Y=1522.504mil|Location2.Y=1528.676mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1697.21mil|Location2.X=1703.381mil|Location1.Y=1522.504mil|Location2.Y=1528.676mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C10-1(18.75mm,14.2mm) on Bottom Layer And Track (18.05mm,13.6mm)(18.05mm,16.4mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1740.025mil|Location2.X=1746.196mil|Location1.Y=1521.52mil|Location2.Y=1527.691mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1740.025mil|Location2.X=1746.196mil|Location1.Y=1521.52mil|Location2.Y=1527.691mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C10-1(18.75mm,14.2mm) on Bottom Layer And Track (18.05mm,13.6mm)(19.45mm,13.6mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1741.501mil|Location2.X=1747.672mil|Location1.Y=1522.504mil|Location2.Y=1528.676mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1741.501mil|Location2.X=1747.672mil|Location1.Y=1522.504mil|Location2.Y=1528.676mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C10-1(18.75mm,14.2mm) on Bottom Layer And Track (19.45mm,13.6mm)(19.45mm,16.4mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1697.21mil|Location2.X=1703.381mil|Location1.Y=1585.496mil|Location2.Y=1591.668mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1697.21mil|Location2.X=1703.381mil|Location1.Y=1585.496mil|Location2.Y=1591.668mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C10-2(18.75mm,15.8mm) on Bottom Layer And Track (18.05mm,13.6mm)(18.05mm,16.4mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1698.687mil|Location2.X=1704.858mil|Location1.Y=1621.914mil|Location2.Y=1628.085mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1698.687mil|Location2.X=1704.858mil|Location1.Y=1621.914mil|Location2.Y=1628.085mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C10-2(18.75mm,15.8mm) on Bottom Layer And Track (18.05mm,16.4mm)(19.45mm,16.4mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1741.501mil|Location2.X=1747.672mil|Location1.Y=1585.496mil|Location2.Y=1591.668mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1741.501mil|Location2.X=1747.672mil|Location1.Y=1585.496mil|Location2.Y=1591.668mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C10-2(18.75mm,15.8mm) on Bottom Layer And Track (19.45mm,13.6mm)(19.45mm,16.4mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.67mil|Location2.X=1830.842mil|Location1.Y=1019.552mil|Location2.Y=1025.723mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.67mil|Location2.X=1830.842mil|Location1.Y=1019.552mil|Location2.Y=1025.723mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C1-1(21.9mm,1.5mm) on Top Layer And Track (21.3mm,0.8mm)(21.3mm,2.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1861.088mil|Location2.X=1867.259mil|Location1.Y=1018.075mil|Location2.Y=1024.246mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1861.088mil|Location2.X=1867.259mil|Location1.Y=1018.075mil|Location2.Y=1024.246mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C1-1(21.9mm,1.5mm) on Top Layer And Track (21.3mm,0.8mm)(24.1mm,0.8mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1825.655mil|Location2.X=1831.826mil|Location1.Y=1062.367mil|Location2.Y=1068.538mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1825.655mil|Location2.X=1831.826mil|Location1.Y=1062.367mil|Location2.Y=1068.538mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C1-1(21.9mm,1.5mm) on Top Layer And Track (21.3mm,2.2mm)(24.1mm,2.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1117.977mil|Location2.X=1124.149mil|Location1.Y=1649.473mil|Location2.Y=1655.644mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1117.977mil|Location2.X=1124.149mil|Location1.Y=1649.473mil|Location2.Y=1655.644mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C11-1(3.95mm,17.5mm) on Bottom Layer And Track (3.35mm,16.8mm)(3.35mm,18.2mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1154.395mil|Location2.X=1160.566mil|Location1.Y=1647.997mil|Location2.Y=1654.168mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1154.395mil|Location2.X=1160.566mil|Location1.Y=1647.997mil|Location2.Y=1654.168mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C11-1(3.95mm,17.5mm) on Bottom Layer And Track (3.35mm,16.8mm)(6.15mm,16.8mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1118.962mil|Location2.X=1125.133mil|Location1.Y=1692.289mil|Location2.Y=1698.46mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1118.962mil|Location2.X=1125.133mil|Location1.Y=1692.289mil|Location2.Y=1698.46mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C11-1(3.95mm,17.5mm) on Bottom Layer And Track (3.35mm,18.2mm)(6.15mm,18.2mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1217.387mil|Location2.X=1223.558mil|Location1.Y=1647.997mil|Location2.Y=1654.168mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1217.387mil|Location2.X=1223.558mil|Location1.Y=1647.997mil|Location2.Y=1654.168mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C11-2(5.55mm,17.5mm) on Bottom Layer And Track (3.35mm,16.8mm)(6.15mm,16.8mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1181.954mil|Location2.X=1188.125mil|Location1.Y=1692.289mil|Location2.Y=1698.46mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1181.954mil|Location2.X=1188.125mil|Location1.Y=1692.289mil|Location2.Y=1698.46mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C11-2(5.55mm,17.5mm) on Bottom Layer And Track (3.35mm,18.2mm)(6.15mm,18.2mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1218.371mil|Location2.X=1224.542mil|Location1.Y=1649.473mil|Location2.Y=1655.644mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1218.371mil|Location2.X=1224.542mil|Location1.Y=1649.473mil|Location2.Y=1655.644mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C11-2(5.55mm,17.5mm) on Bottom Layer And Track (6.15mm,16.8mm)(6.15mm,18.2mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1924.08mil|Location2.X=1930.251mil|Location1.Y=1018.075mil|Location2.Y=1024.246mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1924.08mil|Location2.X=1930.251mil|Location1.Y=1018.075mil|Location2.Y=1024.246mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C1-2(23.5mm,1.5mm) on Top Layer And Track (21.3mm,0.8mm)(24.1mm,0.8mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1888.647mil|Location2.X=1894.818mil|Location1.Y=1062.367mil|Location2.Y=1068.538mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1888.647mil|Location2.X=1894.818mil|Location1.Y=1062.367mil|Location2.Y=1068.538mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C1-2(23.5mm,1.5mm) on Top Layer And Track (21.3mm,2.2mm)(24.1mm,2.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1925.064mil|Location2.X=1931.235mil|Location1.Y=1019.552mil|Location2.Y=1025.723mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1925.064mil|Location2.X=1931.235mil|Location1.Y=1019.552mil|Location2.Y=1025.723mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C1-2(23.5mm,1.5mm) on Top Layer And Track (24.1mm,0.8mm)(24.1mm,2.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1452.624mil|Location2.X=1458.795mil|Location1.Y=1551.049mil|Location2.Y=1557.22mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1452.624mil|Location2.X=1458.795mil|Location1.Y=1551.049mil|Location2.Y=1557.22mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C12-1(12.45mm,15mm) on Bottom Layer And Track (11.85mm,14.3mm)(11.85mm,15.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1489.041mil|Location2.X=1495.212mil|Location1.Y=1549.572mil|Location2.Y=1555.743mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1489.041mil|Location2.X=1495.212mil|Location1.Y=1549.572mil|Location2.Y=1555.743mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C12-1(12.45mm,15mm) on Bottom Layer And Track (11.85mm,14.3mm)(14.65mm,14.3mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1453.608mil|Location2.X=1459.779mil|Location1.Y=1593.863mil|Location2.Y=1600.035mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1453.608mil|Location2.X=1459.779mil|Location1.Y=1593.863mil|Location2.Y=1600.035mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C12-1(12.45mm,15mm) on Bottom Layer And Track (11.85mm,15.7mm)(14.65mm,15.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1552.033mil|Location2.X=1558.204mil|Location1.Y=1549.572mil|Location2.Y=1555.743mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1552.033mil|Location2.X=1558.204mil|Location1.Y=1549.572mil|Location2.Y=1555.743mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C12-2(14.05mm,15mm) on Bottom Layer And Track (11.85mm,14.3mm)(14.65mm,14.3mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1516.6mil|Location2.X=1522.771mil|Location1.Y=1593.863mil|Location2.Y=1600.035mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1516.6mil|Location2.X=1522.771mil|Location1.Y=1593.863mil|Location2.Y=1600.035mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C12-2(14.05mm,15mm) on Bottom Layer And Track (11.85mm,15.7mm)(14.65mm,15.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1553.017mil|Location2.X=1559.188mil|Location1.Y=1551.049mil|Location2.Y=1557.22mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1553.017mil|Location2.X=1559.188mil|Location1.Y=1551.049mil|Location2.Y=1557.22mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C12-2(14.05mm,15mm) on Bottom Layer And Track (14.65mm,14.3mm)(14.65mm,15.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1452.624mil|Location2.X=1458.795mil|Location1.Y=1629.789mil|Location2.Y=1635.96mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1452.624mil|Location2.X=1458.795mil|Location1.Y=1629.789mil|Location2.Y=1635.96mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C13-1(12.45mm,17mm) on Bottom Layer And Track (11.85mm,16.3mm)(11.85mm,17.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1489.041mil|Location2.X=1495.212mil|Location1.Y=1628.312mil|Location2.Y=1634.483mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1489.041mil|Location2.X=1495.212mil|Location1.Y=1628.312mil|Location2.Y=1634.483mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C13-1(12.45mm,17mm) on Bottom Layer And Track (11.85mm,16.3mm)(14.65mm,16.3mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1453.608mil|Location2.X=1459.779mil|Location1.Y=1672.603mil|Location2.Y=1678.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1453.608mil|Location2.X=1459.779mil|Location1.Y=1672.603mil|Location2.Y=1678.775mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C13-1(12.45mm,17mm) on Bottom Layer And Track (11.85mm,17.7mm)(14.65mm,17.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1552.033mil|Location2.X=1558.204mil|Location1.Y=1628.312mil|Location2.Y=1634.483mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1552.033mil|Location2.X=1558.204mil|Location1.Y=1628.312mil|Location2.Y=1634.483mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C13-2(14.05mm,17mm) on Bottom Layer And Track (11.85mm,16.3mm)(14.65mm,16.3mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1516.6mil|Location2.X=1522.771mil|Location1.Y=1672.603mil|Location2.Y=1678.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1516.6mil|Location2.X=1522.771mil|Location1.Y=1672.603mil|Location2.Y=1678.775mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C13-2(14.05mm,17mm) on Bottom Layer And Track (11.85mm,17.7mm)(14.65mm,17.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1553.017mil|Location2.X=1559.188mil|Location1.Y=1629.789mil|Location2.Y=1635.96mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1553.017mil|Location2.X=1559.188mil|Location1.Y=1629.789mil|Location2.Y=1635.96mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C13-2(14.05mm,17mm) on Bottom Layer And Track (14.65mm,16.3mm)(14.65mm,17.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1945.733mil|Location2.X=1951.904mil|Location1.Y=1283.824mil|Location2.Y=1289.995mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1945.733mil|Location2.X=1951.904mil|Location1.Y=1283.824mil|Location2.Y=1289.995mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C2-1(24.05mm,8.25mm) on Bottom Layer And Track (21.85mm,7.55mm)(24.65mm,7.55mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1910.3mil|Location2.X=1916.471mil|Location1.Y=1328.116mil|Location2.Y=1334.287mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1910.3mil|Location2.X=1916.471mil|Location1.Y=1328.116mil|Location2.Y=1334.287mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C2-1(24.05mm,8.25mm) on Bottom Layer And Track (21.85mm,8.95mm)(24.65mm,8.95mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1947.209mil|Location2.X=1953.381mil|Location1.Y=1285.301mil|Location2.Y=1291.472mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1947.209mil|Location2.X=1953.381mil|Location1.Y=1285.301mil|Location2.Y=1291.472mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C2-1(24.05mm,8.25mm) on Bottom Layer And Track (24.65mm,-0.1mm)(24.65mm,8.81mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1946.717mil|Location2.X=1952.888mil|Location1.Y=1285.301mil|Location2.Y=1291.472mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1946.717mil|Location2.X=1952.888mil|Location1.Y=1285.301mil|Location2.Y=1291.472mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C2-1(24.05mm,8.25mm) on Bottom Layer And Track (24.65mm,7.55mm)(24.65mm,8.95mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1947.248mil|Location2.X=1953.419mil|Location1.Y=1326.993mil|Location2.Y=1333.164mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1947.248mil|Location2.X=1953.419mil|Location1.Y=1326.993mil|Location2.Y=1333.164mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.079mm &lt; 0.125mm) Between Pad C2-1(24.05mm,8.25mm) on Bottom Layer And Track (24.65mm,8.81mm)(25.98mm,10.1mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.079mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1846.324mil|Location2.X=1852.495mil|Location1.Y=1285.301mil|Location2.Y=1291.472mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1846.324mil|Location2.X=1852.495mil|Location1.Y=1285.301mil|Location2.Y=1291.472mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C2-2(22.45mm,8.25mm) on Bottom Layer And Track (21.85mm,7.55mm)(21.85mm,8.95mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1882.741mil|Location2.X=1888.912mil|Location1.Y=1283.824mil|Location2.Y=1289.995mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1882.741mil|Location2.X=1888.912mil|Location1.Y=1283.824mil|Location2.Y=1289.995mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C2-2(22.45mm,8.25mm) on Bottom Layer And Track (21.85mm,7.55mm)(24.65mm,7.55mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1847.308mil|Location2.X=1853.479mil|Location1.Y=1328.116mil|Location2.Y=1334.287mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1847.308mil|Location2.X=1853.479mil|Location1.Y=1328.116mil|Location2.Y=1334.287mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C2-2(22.45mm,8.25mm) on Bottom Layer And Track (21.85mm,8.95mm)(24.65mm,8.95mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1117.977mil|Location2.X=1124.149mil|Location1.Y=1432.937mil|Location2.Y=1439.108mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1117.977mil|Location2.X=1124.149mil|Location1.Y=1432.937mil|Location2.Y=1439.108mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C3-1(3.95mm,12mm) on Bottom Layer And Track (3.35mm,11.3mm)(3.35mm,12.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1154.395mil|Location2.X=1160.566mil|Location1.Y=1431.461mil|Location2.Y=1437.632mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1154.395mil|Location2.X=1160.566mil|Location1.Y=1431.461mil|Location2.Y=1437.632mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C3-1(3.95mm,12mm) on Bottom Layer And Track (3.35mm,11.3mm)(6.15mm,11.3mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1118.962mil|Location2.X=1125.133mil|Location1.Y=1475.753mil|Location2.Y=1481.924mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1118.962mil|Location2.X=1125.133mil|Location1.Y=1475.753mil|Location2.Y=1481.924mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C3-1(3.95mm,12mm) on Bottom Layer And Track (3.35mm,12.7mm)(6.15mm,12.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1217.387mil|Location2.X=1223.558mil|Location1.Y=1431.461mil|Location2.Y=1437.632mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1217.387mil|Location2.X=1223.558mil|Location1.Y=1431.461mil|Location2.Y=1437.632mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C3-2(5.55mm,12mm) on Bottom Layer And Track (3.35mm,11.3mm)(6.15mm,11.3mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1181.954mil|Location2.X=1188.125mil|Location1.Y=1475.753mil|Location2.Y=1481.924mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1181.954mil|Location2.X=1188.125mil|Location1.Y=1475.753mil|Location2.Y=1481.924mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C3-2(5.55mm,12mm) on Bottom Layer And Track (3.35mm,12.7mm)(6.15mm,12.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1218.371mil|Location2.X=1224.542mil|Location1.Y=1432.937mil|Location2.Y=1439.108mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1218.371mil|Location2.X=1224.542mil|Location1.Y=1432.937mil|Location2.Y=1439.108mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C3-2(5.55mm,12mm) on Bottom Layer And Track (6.15mm,11.3mm)(6.15mm,12.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1483.135mil|Location2.X=1489.306mil|Location1.Y=1785.793mil|Location2.Y=1791.964mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1483.135mil|Location2.X=1489.306mil|Location1.Y=1785.793mil|Location2.Y=1791.964mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C4-1(12.3mm,21mm) on Bottom Layer And Track (10.1mm,20.3mm)(12.9mm,20.3mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1447.702mil|Location2.X=1453.873mil|Location1.Y=1830.084mil|Location2.Y=1836.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1447.702mil|Location2.X=1453.873mil|Location1.Y=1830.084mil|Location2.Y=1836.255mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C4-1(12.3mm,21mm) on Bottom Layer And Track (10.1mm,21.7mm)(12.9mm,21.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1484.119mil|Location2.X=1490.29mil|Location1.Y=1787.269mil|Location2.Y=1793.44mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1484.119mil|Location2.X=1490.29mil|Location1.Y=1787.269mil|Location2.Y=1793.44mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C4-1(12.3mm,21mm) on Bottom Layer And Track (12.9mm,20.3mm)(12.9mm,21.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1383.725mil|Location2.X=1389.897mil|Location1.Y=1787.269mil|Location2.Y=1793.44mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1383.725mil|Location2.X=1389.897mil|Location1.Y=1787.269mil|Location2.Y=1793.44mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C4-2(10.7mm,21mm) on Bottom Layer And Track (10.1mm,20.3mm)(10.1mm,21.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1420.143mil|Location2.X=1426.314mil|Location1.Y=1785.793mil|Location2.Y=1791.964mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1420.143mil|Location2.X=1426.314mil|Location1.Y=1785.793mil|Location2.Y=1791.964mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C4-2(10.7mm,21mm) on Bottom Layer And Track (10.1mm,20.3mm)(12.9mm,20.3mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1384.71mil|Location2.X=1390.881mil|Location1.Y=1830.084mil|Location2.Y=1836.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1384.71mil|Location2.X=1390.881mil|Location1.Y=1830.084mil|Location2.Y=1836.255mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C4-2(10.7mm,21mm) on Bottom Layer And Track (10.1mm,21.7mm)(12.9mm,21.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1375.852mil|Location2.X=1382.023mil|Location1.Y=1295.144mil|Location2.Y=1301.315mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1375.852mil|Location2.X=1382.023mil|Location1.Y=1295.144mil|Location2.Y=1301.315mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C5-1(9.55mm,8.5mm) on Bottom Layer And Track (10.15mm,7.8mm)(10.15mm,9.2mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1374.868mil|Location2.X=1381.039mil|Location1.Y=1293.667mil|Location2.Y=1299.838mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1374.868mil|Location2.X=1381.039mil|Location1.Y=1293.667mil|Location2.Y=1299.838mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C5-1(9.55mm,8.5mm) on Bottom Layer And Track (7.35mm,7.8mm)(10.15mm,7.8mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1339.435mil|Location2.X=1345.606mil|Location1.Y=1337.958mil|Location2.Y=1344.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1339.435mil|Location2.X=1345.606mil|Location1.Y=1337.958mil|Location2.Y=1344.129mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C5-1(9.55mm,8.5mm) on Bottom Layer And Track (7.35mm,9.2mm)(10.15mm,9.2mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1311.876mil|Location2.X=1318.047mil|Location1.Y=1293.667mil|Location2.Y=1299.838mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1311.876mil|Location2.X=1318.047mil|Location1.Y=1293.667mil|Location2.Y=1299.838mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C5-2(7.95mm,8.5mm) on Bottom Layer And Track (7.35mm,7.8mm)(10.15mm,7.8mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1275.458mil|Location2.X=1281.63mil|Location1.Y=1295.144mil|Location2.Y=1301.315mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1275.458mil|Location2.X=1281.63mil|Location1.Y=1295.144mil|Location2.Y=1301.315mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C5-2(7.95mm,8.5mm) on Bottom Layer And Track (7.35mm,7.8mm)(7.35mm,9.2mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.443mil|Location2.X=1282.614mil|Location1.Y=1337.958mil|Location2.Y=1344.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1276.443mil|Location2.X=1282.614mil|Location1.Y=1337.958mil|Location2.Y=1344.129mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C5-2(7.95mm,8.5mm) on Bottom Layer And Track (7.35mm,9.2mm)(10.15mm,9.2mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1630.774mil|Location2.X=1636.945mil|Location1.Y=1303.509mil|Location2.Y=1309.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1630.774mil|Location2.X=1636.945mil|Location1.Y=1303.509mil|Location2.Y=1309.68mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C6-1(16.05mm,8.75mm) on Bottom Layer And Track (13.85mm,8.05mm)(16.65mm,8.05mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1595.341mil|Location2.X=1601.512mil|Location1.Y=1347.8mil|Location2.Y=1353.971mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1595.341mil|Location2.X=1601.512mil|Location1.Y=1347.8mil|Location2.Y=1353.971mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C6-1(16.05mm,8.75mm) on Bottom Layer And Track (13.85mm,9.45mm)(16.65mm,9.45mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1631.758mil|Location2.X=1637.929mil|Location1.Y=1304.986mil|Location2.Y=1311.157mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1631.758mil|Location2.X=1637.929mil|Location1.Y=1304.986mil|Location2.Y=1311.157mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C6-1(16.05mm,8.75mm) on Bottom Layer And Track (16.65mm,8.05mm)(16.65mm,9.45mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1531.363mil|Location2.X=1537.535mil|Location1.Y=1304.986mil|Location2.Y=1311.157mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1531.363mil|Location2.X=1537.535mil|Location1.Y=1304.986mil|Location2.Y=1311.157mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C6-2(14.45mm,8.75mm) on Bottom Layer And Track (13.85mm,8.05mm)(13.85mm,9.45mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1567.782mil|Location2.X=1573.953mil|Location1.Y=1303.509mil|Location2.Y=1309.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1567.782mil|Location2.X=1573.953mil|Location1.Y=1303.509mil|Location2.Y=1309.68mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C6-2(14.45mm,8.75mm) on Bottom Layer And Track (13.85mm,8.05mm)(16.65mm,8.05mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1532.349mil|Location2.X=1538.52mil|Location1.Y=1347.8mil|Location2.Y=1353.971mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1532.349mil|Location2.X=1538.52mil|Location1.Y=1347.8mil|Location2.Y=1353.971mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C6-2(14.45mm,8.75mm) on Bottom Layer And Track (13.85mm,9.45mm)(16.65mm,9.45mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1194.671mil|Location2.X=1200.842mil|Location1.Y=1015.615mil|Location2.Y=1021.786mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1194.671mil|Location2.X=1200.842mil|Location1.Y=1015.615mil|Location2.Y=1021.786mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.096mm &lt; 0.125mm) Between Pad C7-1(4.5mm,1.5mm) on Top Layer And Track (5.571mm,0.535mm)(5.571mm,2.465mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.096mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1270.457mil|Location2.X=1276.629mil|Location1.Y=2078.608mil|Location2.Y=2084.779mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1270.457mil|Location2.X=1276.629mil|Location1.Y=2078.608mil|Location2.Y=2084.779mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.096mm &lt; 0.125mm) Between Pad C8-1(6.425mm,28.5mm) on Top Layer And Track (7.496mm,27.535mm)(7.496mm,29.465mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.096mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1844.355mil|Location2.X=1850.527mil|Location1.Y=2082.544mil|Location2.Y=2088.715mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1844.355mil|Location2.X=1850.527mil|Location1.Y=2082.544mil|Location2.Y=2088.715mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C9-1(22.4mm,28.5mm) on Top Layer And Track (21.8mm,27.8mm)(21.8mm,29.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1880.773mil|Location2.X=1886.944mil|Location1.Y=2081.068mil|Location2.Y=2087.24mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1880.773mil|Location2.X=1886.944mil|Location1.Y=2081.068mil|Location2.Y=2087.24mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C9-1(22.4mm,28.5mm) on Top Layer And Track (21.8mm,27.8mm)(24.6mm,27.8mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1845.34mil|Location2.X=1851.511mil|Location1.Y=2125.36mil|Location2.Y=2131.531mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1845.34mil|Location2.X=1851.511mil|Location1.Y=2125.36mil|Location2.Y=2131.531mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C9-1(22.4mm,28.5mm) on Top Layer And Track (21.8mm,29.2mm)(24.6mm,29.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.765mil|Location2.X=1949.936mil|Location1.Y=2081.068mil|Location2.Y=2087.24mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.765mil|Location2.X=1949.936mil|Location1.Y=2081.068mil|Location2.Y=2087.24mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C9-2(24mm,28.5mm) on Top Layer And Track (21.8mm,27.8mm)(24.6mm,27.8mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1908.332mil|Location2.X=1914.503mil|Location1.Y=2125.36mil|Location2.Y=2131.531mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1908.332mil|Location2.X=1914.503mil|Location1.Y=2125.36mil|Location2.Y=2131.531mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.125mm) Between Pad C9-2(24mm,28.5mm) on Top Layer And Track (21.8mm,29.2mm)(24.6mm,29.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1944.749mil|Location2.X=1950.92mil|Location1.Y=2082.544mil|Location2.Y=2088.715mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1944.749mil|Location2.X=1950.92mil|Location1.Y=2082.544mil|Location2.Y=2088.715mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.125mm) Between Pad C9-2(24mm,28.5mm) on Top Layer And Track (24.6mm,27.8mm)(24.6mm,29.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1647.34mil|Location2.X=1653.511mil|Location1.Y=1467.534mil|Location2.Y=1473.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1647.34mil|Location2.X=1653.511mil|Location1.Y=1467.534mil|Location2.Y=1473.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.071mm &lt; 0.125mm) Between Pad U1-6(16.75mm,12.75mm) on Top Layer And Text "R1" (17.084mm,11.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1654.692mil|Location2.X=1658.973mil|Location1.Y=1467.146mil|Location2.Y=1471.427mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1654.692mil|Location2.X=1658.973mil|Location1.Y=1467.146mil|Location2.Y=1471.427mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.125mm) Between Pad U1-7(17.25mm,12.75mm) on Top Layer And Text "R1" (17.084mm,11.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1674.371mil|Location2.X=1678.652mil|Location1.Y=1484.074mil|Location2.Y=1488.355mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1674.371mil|Location2.X=1678.652mil|Location1.Y=1484.074mil|Location2.Y=1488.355mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.125mm) Between Pad U1-8(17.75mm,12.75mm) on Top Layer And Text "R1" (17.084mm,11.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1700.609mil|Location2.X=1704.89mil|Location1.Y=1467.146mil|Location2.Y=1471.427mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1700.609mil|Location2.X=1704.89mil|Location1.Y=1467.146mil|Location2.Y=1471.427mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.125mm) Between Pad U1-9(18.25mm,12.75mm) on Top Layer And Text "R1" (17.084mm,11.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1833.419mil|Location2.X=1837.7mil|Location1.Y=1102.86mil|Location2.Y=1107.14mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1833.419mil|Location2.X=1837.7mil|Location1.Y=1102.86mil|Location2.Y=1107.14mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.125mm) Between Pad VT1-5(21.725mm,2.75mm) on Top Layer And Text "C1" (21.457mm,3.067mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1853.098mil|Location2.X=1857.379mil|Location1.Y=1135.657mil|Location2.Y=1139.938mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1853.098mil|Location2.X=1857.379mil|Location1.Y=1135.657mil|Location2.Y=1139.938mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.125mm) Between Pad VT1-6(21.725mm,4.02mm) on Top Layer And Text "C1" (21.457mm,3.067mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1900.56mil|Location2.X=1904.841mil|Location1.Y=2054.94mil|Location2.Y=2059.221mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1900.56mil|Location2.X=1904.841mil|Location1.Y=2054.94mil|Location2.Y=2059.221mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.125mm) Between Pad VT4-8(22.705mm,26.901mm) on Top Layer And Text "C9" (23.067mm,26.25mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2034.962mil|Location2.X=2039.243mil|Location1.Y=1853.688mil|Location2.Y=1857.969mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2034.962mil|Location2.X=2039.243mil|Location1.Y=1853.688mil|Location2.Y=1857.969mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.125mm) Between Pad X2-N(27.5mm,22.5mm) on Multi-Layer And Text "L7" (26.5mm,22.138mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2114.507mil|Location2.X=2118.788mil|Location1.Y=1853.688mil|Location2.Y=1857.969mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2114.507mil|Location2.X=2118.788mil|Location1.Y=1853.688mil|Location2.Y=1857.969mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.125mm) Between Pad X2-N(27.5mm,22.5mm) on Multi-Layer And Text "L8" (28.25mm,22.138mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1117.297mil|Location2.X=1121.578mil|Location1.Y=2117.938mil|Location2.Y=2122.219mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1117.297mil|Location2.X=1121.578mil|Location1.Y=2117.938mil|Location2.Y=2122.219mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.125mm) Between Pad X3-P(2.5mm,27.5mm) on Multi-Layer And Text "C8" (3.417mm,28mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID1JXGZSCA4QA1JD1HLQ2ONUFMIMVLKEUYUCMEGXETQGLK1RBUP0AN"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.15mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1421.427mil|Location2.X=1426.364mil|Location1.Y=1257.368mil|Location2.Y=1262.305mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\motherboard_NEOWELT\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1421.427mil|Location2.X=1426.364mil|Location1.Y=1257.368mil|Location2.Y=1262.305mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.15mm) Between Text "R4" (11.167mm,6mm) on Top Overlay And Track (10.15mm,7.155mm)(13.35mm,7.155mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
