@@ -288,6 +288,10 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [GeneratedDocument1]
+DocumentPath=Project Outputs for New_MB\Design Rule Check - Motherboard_Neowelt.html
+DItemRevisionGUID=
+
+[GeneratedDocument2]
 DocumentPath=Project Outputs for New_MB\Footprint Comparison - PCB1.html
 DItemRevisionGUID=
 
