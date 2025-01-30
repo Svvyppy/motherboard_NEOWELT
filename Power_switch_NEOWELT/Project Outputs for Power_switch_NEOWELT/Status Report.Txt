@@ -1,0 +1,18 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [Power_switch_NEOWELT.PrjPcb]
+   Generated File[Power_switch_pcb.GTO]
+   Generated File[Power_switch_pcb.GTS]
+   Generated File[Power_switch_pcb.GTL]
+   Generated File[Power_switch_pcb.GBL]
+   Generated File[Power_switch_pcb.GBS]
+   Generated File[Power_switch_pcb.GBO]
+   Generated File[Power_switch_pcb.RUL]
+   Generated File[Power_switch_pcb.EXTREP]
+   Generated File[Power_switch_pcb.REP]
+
+
+Files Generated   : 9
+Documents Printed : 0
+
+Finished Output Generation At 10:42:03 On 30.01.2025

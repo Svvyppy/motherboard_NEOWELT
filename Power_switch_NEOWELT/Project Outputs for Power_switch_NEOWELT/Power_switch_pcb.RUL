@@ -1,0 +1,12 @@
+DRC Rules Export File for PCB: C:\Users\rreali\Documents\Altium\Mother_board\Power_switch_NEOWELT\Power_switch_pcb.PcbDoc
+RuleKind=Clearance|RuleName=V Clearance 5|Scope=Board|Minimum=7.87
+RuleKind=Clearance|RuleName=V Clearance 4|Scope=Board|Minimum=7.87
+RuleKind=Clearance|RuleName=V Clearance 3|Scope=Board|Minimum=7.87
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=4.00
+RuleKind=Width|RuleName=Aisler compliant width|Scope=Board|Minimum=7.87
+RuleKind=Width|RuleName=V|Scope=Board|Minimum=11.81
+RuleKind=Clearance|RuleName=AISLER clearance|Scope=Board|Minimum=9.84
+RuleKind=Clearance|RuleName=edge|Scope=Board|Minimum=10.00
+RuleKind=Clearance|RuleName=V Clearance 2|Scope=Board|Minimum=7.87
+RuleKind=Clearance|RuleName=V Clearance|Scope=Board|Minimum=9.84
