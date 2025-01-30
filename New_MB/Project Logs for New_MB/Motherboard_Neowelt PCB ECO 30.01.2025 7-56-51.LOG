@@ -1,0 +1,17 @@
+Removed Pin From Net: NetName=UART2_TX Pin=DD1-27
+Removed Pin From Net: NetName=I2C2_SCL Pin=DD3-16
+Removed Pin From Net: NetName=I2C2_SDA Pin=DD3-17
+Removed Pin From Net: NetName=data Pin=R3-2
+Removed Pin From Net: NetName=UART0_RX Pin=XP1-A9
+Removed Pin From Net: NetName=UART0_TX Pin=XP1-A10
+Removed Pin From Net: NetName=UART2_RX Pin=XP1-A11
+Removed Pin From Net: NetName=SERVO1 Pin=XP1-B15
+Removed Pin From Net: NetName=SERVO2 Pin=XP1-B16
+Added Pin To Net: NetName=data Pin=DD3-22
+Added Pin To Net: NetName=V_BAT Pin=R3-2
+Added Pin To Net: NetName=PWM1 Pin=XP1-B15
+Added Pin To Net: NetName=PWM2 Pin=XP1-B16
+Added Pin To Net: NetName=SCL Pin=DD3-16
+Added Net: Name=SCL
+Added Pin To Net: NetName=SDA Pin=DD3-17
+Added Net: Name=SDA

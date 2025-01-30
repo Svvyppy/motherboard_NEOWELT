@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [New_MB.PrjPcb]
+   Generated File[Motherboard_Neowelt.TXT]
+   Generated File[Motherboard_Neowelt.LDP]
+   Generated File[Motherboard_Neowelt.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 8:28:26 On 30.01.2025

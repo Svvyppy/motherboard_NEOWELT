@@ -1,0 +1,11 @@
+Removed Pin From Net: NetName=PWM1 Pin=DD4-12
+Removed Pin From Net: NetName=PWM2 Pin=DD4-15
+Removed Pin From Net: NetName=PWM1 Pin=XP1-B15
+Removed Pin From Net: NetName=PWM2 Pin=XP1-B16
+Added Pin To Net: NetName=SERVO1 Pin=DD4-12
+Added Pin To Net: NetName=SERVO1 Pin=XP1-B15
+Added Net: Name=SERVO1
+Added Pin To Net: NetName=SERVO2 Pin=DD4-15
+Added Pin To Net: NetName=SERVO2 Pin=XP1-B16
+Added Net: Name=SERVO2
+Added Class: Name=SERVO[1..2]
