@@ -1,0 +1,28 @@
+Removed Pin From Net: NetName=GND Pin=HL1-2
+Removed Pin From Net: NetName=V_OUT Pin=R6-2
+Change Component Designator: OldDesignator=R7 NewDesignator=R6
+Change Component Designator: OldDesignator=R8 NewDesignator=R7
+Added Component: Designator=R8(0603R)
+Add component (AddParameter): Name = "Case"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufactore"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Notice"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Number"; Value = "Resistor_10k_1_0603"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Power"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Rate"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Shop"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "1%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10 ê"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=V_OUT Pin=HL1-1
+Added Pin To Net: NetName=GND Pin=R8-1
+Change Net Name : Old Net Name=NetR7_1 New Net Name=NetR6_1
+Change Net Name : Old Net Name=NetR8_2 New Net Name=NetR7_2
+Added Pin To Net: NetName=NetHL1_2 Pin=HL1-2
+Added Pin To Net: NetName=NetHL1_2 Pin=R8-2
+Added Net: Name=NetHL1_2
+Added Member To Class: ClassName=Sheet1 Member=Component HL1 LED
+Added Member To Class: ClassName=Sheet1 Member=Component R1 Resistor
+Added Member To Class: ClassName=Sheet1 Member=Component R3 Resistor
+Added Member To Class: ClassName=Sheet1 Member=Component R5 Resistor
+Added Member To Class: ClassName=Sheet1 Member=Component R8 Resistor
+Added Member To Class: ClassName=Sheet1 Member=Component R10 Resistor

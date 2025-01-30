@@ -1,0 +1,28 @@
+Change Component Designator: OldDesignator=HL2 NewDesignator=HL1
+Change Component Designator: OldDesignator=R2 NewDesignator=R1
+Change Component Designator: OldDesignator=R3 NewDesignator=R2
+Change Component Designator: OldDesignator=R4 NewDesignator=R3
+Change Component Designator: OldDesignator=R5 NewDesignator=R4
+Change Component Designator: OldDesignator=R6 NewDesignator=R5
+Change Component Designator: OldDesignator=R7 NewDesignator=R6
+Change Component Designator: OldDesignator=R8 NewDesignator=R7
+Change Component Designator: OldDesignator=R9 NewDesignator=R8
+Change Component Designator: OldDesignator=R11 NewDesignator=R9
+Change Component Designator: OldDesignator=R12 NewDesignator=R10
+Added Pin To Net: NetName=NetHL1_1 Pin=HL1-1
+Added Pin To Net: NetName=GND Pin=HL1-2
+Added Pin To Net: NetName=NetHL1_1 Pin=R6-1
+Added Pin To Net: NetName=V_OUT Pin=R6-2
+Change Net Name : Old Net Name=NetR2_1 New Net Name=NetR1_1
+Change Net Name : Old Net Name=NetR4_1 New Net Name=NetR3_1
+Change Net Name : Old Net Name=NetR8_1 New Net Name=NetR7_1
+Change Net Name : Old Net Name=NetR9_2 New Net Name=NetR8_2
+Change Net Name : Old Net Name=NetR11_1 New Net Name=NetR9_1
+Added Member To Class: ClassName=Sheet1 Member=Component HL1 LED
+Added Member To Class: ClassName=Sheet1 Member=Component R1 Resistor
+Added Member To Class: ClassName=Sheet1 Member=Component R2 Resistor
+Added Member To Class: ClassName=Sheet1 Member=Component R3 Resistor
+Added Member To Class: ClassName=Sheet1 Member=Component R5 Resistor
+Added Member To Class: ClassName=Sheet1 Member=Component R6 Resistor
+Added Member To Class: ClassName=Sheet1 Member=Component R7 Resistor
+Added Member To Class: ClassName=Sheet1 Member=Component R8 Resistor
